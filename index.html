@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Web Pemesanan Carbonara</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-orange-50 min-h-screen flex items-center justify-center p-6">
+
+  <div class="max-w-6xl w-full grid md:grid-cols-2 gap-8 bg-white rounded-3xl shadow-2xl overflow-hidden">
+
+    <!-- Gambar -->
+    <div class="relative">
+      <img
+        src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?q=80&w=1200&auto=format&fit=crop"
+        alt="Spaghetti Carbonara"
+        class="w-full h-full object-cover"
+      />
+
+      <div class="absolute inset-0 bg-black/30 flex flex-col justify-end p-8 text-white">
+        <h1 class="text-4xl font-bold mb-2">
+          Spaghetti Carbonara
+        </h1>
+
+        <p class="text-lg opacity-90">
+          Creamy • Salty • Peppery
+        </p>
+      </div>
+    </div>
+
+    <!-- Form -->
+    <div class="p-8 md:p-12 flex flex-col justify-center">
+
+      <span class="bg-orange-100 text-orange-600 px-4 py-1 rounded-full w-fit text-sm font-semibold mb-4">
+        Menu Favorit
+      </span>
+
+      <h2 class="text-3xl font-bold text-gray-800 mb-4">
+        Pesan Sekarang
+      </h2>
+
+      <p class="text-gray-500 mb-8 leading-relaxed">
+        Nikmati Spaghetti Carbonara creamy dengan smoked beef lezat.
+      </p>
+
+      <form id="orderForm" class="space-y-5">
+
+        <!-- Nama -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">
+            Nama Pemesan
+          </label>
+
+          <input
+            type="text"
+            id="nama"
+            placeholder="Masukkan nama"
+            required
+            class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-orange-400"
+          />
+        </div>
+
+        <!-- Jumlah -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">
+            Jumlah Pesanan
+          </label>
+
+          <input
+            type="number"
+            id="jumlah"
+            placeholder="1"
+            required
+            class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-orange-400"
+          />
+        </div>
+
+        <!-- Level Pedas -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">
+            Level Pedas
+          </label>
+
+          <select
+            id="pedas"
+            class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-orange-400"
+          >
+            <option>Level 0 - Tidak Pedas</option>
+            <option>Level 1</option>
+            <option>Level 2</option>
+            <option>Level 3</option>
+            <option>Level 4</option>
+            <option>Level 5 - Extra Pedas</option>
+          </select>
+        </div>
+
+        <!-- Chili Oil -->
+        <div class="flex items-center gap-3 bg-orange-50 border border-orange-200 rounded-xl p-4">
+          <input
+            type="checkbox"
+            id="chiliOil"
+            class="w-5 h-5 accent-orange-500"
+          />
+
+          <label
+            for="chiliOil"
+            class="text-gray-700 font-medium"
+          >
+            Tambahkan Chili Oil (Free)
+          </label>
+        </div>
+
+        <!-- Catatan -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">
+            Catatan Tambahan
+          </label>
+
+          <textarea
+            id="catatan"
+            rows="4"
+            placeholder="Tambahkan catatan pesanan"
+            class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-orange-400"
+          ></textarea>
+        </div>
+
+        <!-- Harga -->
+        <div class="flex items-center justify-between mt-8">
+
+          <div>
+            <p class="text-sm text-gray-500">Harga</p>
+
+            <h3 class="text-3xl font-bold text-orange-500">
+              Rp15.000
+            </h3>
+          </div>
+
+          <button
+            type="submit"
+            class="bg-orange-500 hover:bg-orange-600 transition-all text-white px-8 py-4 rounded-2xl shadow-lg font-semibold text-lg"
+          >
+            Pesan via WhatsApp
+          </button>
+
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+  <script>
+    document
+      .getElementById("orderForm")
+      .addEventListener("submit", function (e) {
+
+        e.preventDefault();
+
+        const nama = document.getElementById("nama").value;
+        const jumlah = document.getElementById("jumlah").value;
+        const pedas = document.getElementById("pedas").value;
+        const chiliOil = document.getElementById("chiliOil").checked
+          ? "Ya"
+          : "Tidak";
+        const catatan = document.getElementById("catatan").value;
+
+        const pesan =
+`Halo, saya ingin memesan Spaghetti Carbonara 🍝
+
+Nama: ${nama}
+Jumlah: ${jumlah}
+Level Pedas: ${pedas}
+Chili Oil: ${chiliOil}
+Catatan: ${catatan}
+
+Total Harga: Rp15.000`;
+
+        const url =
+          "https://wa.me/6285930368786?text=" +
+          encodeURIComponent(pesan);
+
+        window.open(url, "_blank");
+      });
+  </script>
+
+</body>
+</html>
